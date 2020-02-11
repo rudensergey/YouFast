@@ -1,6 +1,6 @@
 {
    "name": "YouFast",
-   "version": "0.5",
+   "version": "0.9",
    "description": "Google Chrome extention which helps to increase a video rate more than 2x times",
 
    "permissions": ["activeTab"],
