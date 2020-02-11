@@ -3,12 +3,21 @@
    "version": "0.01",
    "description": "Google Chrome extention which helps to increase a video rate more than 2x times",
 
+   "permissions": ["activeTab"],
+
    "background": {
       "scripts": ["background.js"],
       "persistent": false
    },
 
-   "page_action": {
+   "content_scripts": [
+      {
+         "matches": ["https://*.youtube.com/*"],
+         "js": ["content.js"]
+      }
+   ],
+
+   "browser_action": {
       "default_popup": "popup.html",
       "default_icon": {
          "128": "images/128.png",
