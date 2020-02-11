@@ -1,21 +1,27 @@
 let increaseButton = document.getElementById("increaseRate");
 let defaultButton = document.getElementById("defaultRate");
 let decreaseButton = document.getElementById("decreaseRate");
-let current = document.getElementById("currentRate");
+let current = document.querySelector(".current");
+
+console.log(current);
 
 let currentRate = 1;
 
 increaseButton.onclick = function() {
-   if (currentRate === 3.5) alert("Maximum rate");
-   let newRate = currentRate + 0.5;
+   if (currentRate <= 3) {
+      let newRate = currentRate + 0.5;
 
-   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-      chrome.tabs.executeScript(tabs[0].id, {
-         code: `document.querySelector("video").playbackRate = ${newRate};`
+      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+         chrome.tabs.executeScript(tabs[0].id, {
+            code: `document.querySelector("video").playbackRate = ${newRate};`
+         });
       });
-   });
 
-   currentRate = newRate;
+      currentRate = newRate;
+      current.textContent = currentRate;
+   } else {
+      alert("Maximum rate");
+   }
 };
 
 defaultButton.onclick = function() {
@@ -26,17 +32,22 @@ defaultButton.onclick = function() {
    });
 
    currentRate = 1;
+   current.textContent = currentRate;
 };
 
 decreaseButton.onclick = function() {
-   if (currentRate === 0.5) alert("Sooooo slow");
-   let newRate = currentRate - 0.5;
+   if (currentRate > 0.5) {
+      let newRate = currentRate - 0.5;
 
-   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-      chrome.tabs.executeScript(tabs[0].id, {
-         code: 'document.querySelector("video").playbackRate = 0.5;'
+      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+         chrome.tabs.executeScript(tabs[0].id, {
+            code: `document.querySelector("video").playbackRate = ${newRate};`
+         });
       });
-   });
 
-   currentRate = newRate;
+      currentRate = newRate;
+      current.textContent = currentRate;
+   } else {
+      alert("Sooooo slow. It's limit");
+   }
 };
