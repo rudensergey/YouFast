@@ -1,3 +1,3 @@
 chrome.runtime.onInstalled.addListener(function() {
-   alert("Extention was installed!");
+   console.log("Extention was installed!");
 });
