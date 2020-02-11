@@ -1,0 +1,22 @@
+{
+   "name": "youfast",
+   "version": "0.5.0",
+   "description": "",
+   "main": "background.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/rudensergey/YouFast.git"
+   },
+   "author": "Rudensergey",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/rudensergey/YouFast/issues"
+   },
+   "homepage": "https://github.com/rudensergey/YouFast#readme",
+   "devDependencies": {
+      "stylelint": "^13.1.0"
+   }
+}

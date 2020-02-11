@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <style>
-         body {
-            height: 200px;
-            width: 200px;
-         }
-
-         button {
-            height: 50px;
-            width: 50px;
-            outline: none;
-         }
-      </style>
+      <link href="style.css" type="text/css" rel="stylesheet" />
+      <link
+         href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
+         rel="stylesheet"
+      />
    </head>
    <body>
-      <h1>YouFast</h1>
-      <button id="increaseRate">increase</button>
-      <button id="defaultRate">default</button>
-      <button id="decreaseRate">decrease</button>
-      <h6 class="currentRate">Current rate: <span class="current">1</span></h6>
+      <div class="logo"></div>
+      <h1 class="main">YOUFAST</h1>
+      <div class="buttons">
+         <div id="increaseRate" class="button">increase</div>
+         <div id="defaultRate" class="button">default</div>
+         <div id="decreaseRate" class="button">decrease</div>
+      </div>
+      <p class="currentRate">Current rate: <span class="current">1</span></p>
       <script src="popup.js"></script>
    </body>
 </html>
