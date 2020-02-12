@@ -2,31 +2,53 @@
    "name": "YouFast",
    "version": "1.0",
    "description": "Google Chrome extention which helps to increase a video rate more than 2x times",
+   "commands": {
+      "increase_rate": {
+         "suggested_key": {
+            "default": "Ctrl+Shift+Left",
+            "mac": "Command+Shift+Left"
+         },
+         "description": "Increasing video rate button",
+         "global": true
+      },
 
+      "decrease_rate": {
+         "suggested_key": {
+            "default": "Ctrl+Shift+Right",
+            "mac": "Command+Shift+Right"
+         },
+         "description": "Decreasing video rate button",
+         "global": true
+      },
+
+      "default_rate": {
+         "suggested_key": {
+            "default": "Ctrl+Shift+Up",
+            "mac": "Command+Shift+Up"
+         },
+         "description": "Set default",
+         "global": true
+      }
+   },
    "permissions": ["activeTab"],
-
    "background": {
       "scripts": ["background.js"],
       "persistent": false
    },
-
    "content_scripts": [
       {
          "matches": ["https://*.youtube.com/*"],
          "js": ["content.js"]
       }
    ],
-
    "browser_action": {
       "default_popup": "popup.html",
       "default_icon": {
          "128": "images/128.png"
       }
    },
-
    "icons": {
       "128": "images/128.png"
    },
-
    "manifest_version": 2
 }
