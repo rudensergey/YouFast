@@ -20,12 +20,12 @@ let controller = {
          case "increase":
             this.currentValue <= 3
                ? this.inject(this.currentValue + 0.5)
-               : alert("Maximum rate");
+               : this.block();
             break;
          case "decrease":
             this.currentValue > 0.5
                ? this.inject(this.currentValue - 0.5)
-               : alert("Sooooo slow. It's limit");
+               : this.block();
             break;
          case "default":
             this.inject(this.defaultValue);
@@ -42,5 +42,12 @@ let controller = {
 
       this.output.textContent = newRate;
       this.currentValue = newRate;
+   },
+
+   block: function() {
+      document.getElementById("warning").style.color = "red";
+      setTimeout(() => {
+         document.getElementById("warning").style.color = "rgb(58, 58, 58)";
+      }, 300);
    }
 };
