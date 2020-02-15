@@ -1,9 +1,51 @@
 chrome.commands.onCommand.addListener(function(command) {
    if (command === "increase_rate") {
-      console.log("inc");
+      controller.changeRate("decrease");
    } else if (command === "decrease_rate") {
-      console.log("dec");
+      controller.changeRate("increase");
    } else if (command === "default_rate") {
-      console.log("def");
+      controller.changeRate("default");
    }
 });
+
+let controller = {
+   defaultValue: 1,
+   currentValue: 1,
+   output: document.querySelector(".current"),
+
+   changeRate: function(type) {
+      switch (type) {
+         case "increase":
+            this.currentValue <= 3
+               ? this.inject(this.currentValue + 0.5)
+               : this.block();
+            break;
+         case "decrease":
+            this.currentValue > 0.5
+               ? this.inject(this.currentValue - 0.5)
+               : this.block();
+            break;
+         case "default":
+            this.inject(this.defaultValue);
+            break;
+      }
+   },
+
+   inject: function(newRate) {
+      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+         chrome.tabs.executeScript(tabs[0].id, {
+            code: `document.querySelector("video").playbackRate = ${newRate};`
+         });
+      });
+
+      // this.output.textContent = newRate;
+      this.currentValue = newRate;
+   },
+
+   block: function() {
+      document.getElementById("warning").style.color = "red";
+      setTimeout(() => {
+         document.getElementById("warning").style.color = "rgb(58, 58, 58)";
+      }, 300);
+   }
+};
